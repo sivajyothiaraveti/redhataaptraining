@@ -1,5 +1,5 @@
 ---
-- hosts: web:db
+- hosts: role_sj_web:role_sj_db
   tasks:
   - name: create directory
     file:
