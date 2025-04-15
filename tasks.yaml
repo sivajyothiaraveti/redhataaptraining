@@ -1,0 +1,14 @@
+---
+- hosts: web:db
+  tasks:
+  - name: create directory
+    file:
+      path: /tmp/sivajyothi
+      state: directory
+  - name: create a user 
+    user:
+      name: aapuser
+      shell: /bin/bash
+      uid: 2000
+      comment: "my first aap user"
+      state: present
