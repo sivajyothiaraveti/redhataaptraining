@@ -13,8 +13,8 @@
         state: "{{ desired_state }}"
 
     - name: Configure hostname and IP in webpage
-      #template:
-      copy:
+      template:
+      #copy:
         src: index.html
         dest: /var/www/html/index.html
       when: desired_state == "present"  
