@@ -1,8 +1,8 @@
-[web]
+[sj_web]
 m1 ansible_host=172.31.24.124
 
-[web:vars]
+[sj_web:vars]
 web_content=<h1>This is a demo</h1><p>Host: {{ ansible_hostname }}</p>
 
-[db]
+[sj_db]
 m2 ansible_host=172.31.18.18
