@@ -13,7 +13,7 @@
       ansible.builtin.apt:
         update_cache: yes
 
-    - name: Ensure {{ pkgname }} is in desired state: {{ desired_state }}
+    - name: Ensure {{ pkgname }} is in desired state {{ desired_state }}
       ansible.builtin.apt:
         name: "{{ pkgname }}"
         state: "{{ desired_state }}"
