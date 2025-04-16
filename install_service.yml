@@ -1,6 +1,6 @@
 ---
 - name: Install and start services based on group vars
-  hosts: sj_db
+  hosts: sj_web
   tasks:
     - name: Install required package
       apt:
