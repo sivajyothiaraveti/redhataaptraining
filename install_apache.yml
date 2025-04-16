@@ -1,6 +1,6 @@
 ---
 - name: "Deploy {{ pkgname }} webserver"
-  hosts: role_sj_web
+  hosts: sj_web
   become: yes
   vars:
     pkgname: apache2             
