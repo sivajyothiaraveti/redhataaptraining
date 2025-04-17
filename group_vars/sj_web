@@ -1,1 +1,2 @@
 pkg: apache2
+ansible_password: "{{ encrypted_web_password }}"
