@@ -11,12 +11,12 @@
     - name: Show Encrypted Web Password (web group only)
       debug:
         var: encrypted_web_password
-      when: "'web' in group_names"
+      when: "'sj_web' in group_names"
 
     - name: Show Encrypted DB Password (db group only)
       debug:
         var: encrypted_db_password
-      when: "'db' in group_names"
+      when: "'sj_db' in group_names"
 
     - name: Ensure required packages are installed
       apt:
@@ -28,7 +28,7 @@
     - name: Create a user with vault password
       user:
         name: vaultuser
-        password: "{{ (encrypted_web_password if 'web' in group_names else encrypted_db_password) }}"
+        password: "{{ (encrypted_web_password if 'sj_web' in group_names else encrypted_db_password) }}"
         shell: /bin/bash
         state: present
 
@@ -38,13 +38,13 @@
         content: |
           [credentials]
           user = vaultuser
-          password = {{ encrypted_web_password if 'web' in group_names else encrypted_db_password }}
+          password = {{ encrypted_web_password if 'sj_web' in group_names else encrypted_db_password }}
         owner: root
         group: root
         mode: '0600'
 
     - name: Ensure the application service is running (apache2 or mysql)
       service:
-        name: "{{ 'apache2' if 'web' in group_names else 'mysql' }}"
+        name: "{{ 'apache2' if 'sj_web' in group_names else 'mysql' }}"
         state: started
         enabled: true
