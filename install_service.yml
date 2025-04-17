@@ -19,3 +19,7 @@
     - name: Print role info
       debug:
         msg: "This host is configured as a {{ role }}"
+
+    - name: Testing Webhooks
+      debug:
+        msg: "Webhooks working fine"     
