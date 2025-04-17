@@ -1,3 +1,2 @@
-pkg: 
-- mariadb-server
-- apache2
+pkg: mariadb-server
+ansible_password: "{{ encrypted_db_password }}"
