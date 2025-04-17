@@ -1,6 +1,6 @@
 ---
 - name: Secure Automation with Ansible Vault on Ubuntu
-  hosts: sj_web
+  hosts: sj_db
   vars_files:
     - vault_secrets.yml
   tasks:
