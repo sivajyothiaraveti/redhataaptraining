@@ -7,5 +7,5 @@ web_content=<h1>This is a demo</h1><p>Host: {{ ansible_hostname }}</p>
 [sj_db]
 m2 ansible_host=172.31.18.18
 
-[all:vars]
-ansible_user=ubuntu
+[sj_db:vars]
+ansible_user=dbadmin
