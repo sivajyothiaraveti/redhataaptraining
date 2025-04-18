@@ -2,7 +2,6 @@
 - name: Demonstrate Advanced Error Handling in AAP 2.5
   hosts: sj_web
   gather_facts: true
-
   vars:
     bad_package: "fakepackage12"
     log_file: "/var/log/aap_error_handling.log"
