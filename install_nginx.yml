@@ -1,6 +1,6 @@
 ---
 - name: Demonstrate Advanced Playbook Features
-  hosts: sj_web
+  hosts: webservers
   vars_files:
     - vars.yml
 
