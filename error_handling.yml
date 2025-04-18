@@ -20,6 +20,7 @@
           apt:
             name: "{{ bad_package }}"
             state: present
+            update_cache: yes
           register: install_result
           failed_when: install_result.failed    
           notify: Log bad package install failure
@@ -37,8 +38,6 @@
             dest: "{{ log_file }}"
             force: no
             mode: '0644'
-            owner: root
-            group: root
             remote_src: no
 
         - name: Rescue - Install an alternative valid package
