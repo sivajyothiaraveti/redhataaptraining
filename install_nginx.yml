@@ -1,0 +1,63 @@
+---
+- name: Demonstrate Advanced Playbook Features
+  hosts: sj_web
+  vars_files:
+    - vars.yml
+
+  tasks:
+    - name: Install NGINX
+      apt:
+        name: nginx
+        state: present
+        update_cache: yes
+      notify: restart nginx
+
+    - name: Create multiple directories using loop
+      file:
+        path: "/var/www/{{ item }}"
+        state: directory
+        owner: www-data
+        mode: '0755'
+      loop:
+        - site1
+        - site2
+        - site3
+
+    - name: Deploy index.html in each site folder
+      copy:
+        content: |
+          <html>
+            <head><title>Welcome to {{ item }}</title></head>
+            <body>
+              <h1>Welcome to {{ item }}!</h1>
+            </body>
+          </html>
+        dest: "/var/www/{{ item }}/index.html"
+        owner: www-data
+        group: www-data
+        mode: '0644'
+      loop:
+        - site1
+        - site2
+        - site3
+
+    - name: Conditionally deploy nginx config only on web01
+      template:
+        src: nginx.conf.j2
+        dest: /etc/nginx/nginx.conf
+      notify: restart nginx  
+      when: inventory_hostname == "web01"
+
+    - name: Check if port 80 is in use
+      shell: "lsof -i :80 | grep LISTEN | awk '{print $1}' | head -n 1"
+      register: port_check
+      changed_when: false
+      failed_when: false
+
+    
+
+  handlers:
+    - name: restart nginx
+      service:
+        name: nginx
+        state: restarted
