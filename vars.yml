@@ -1,3 +1,4 @@
+web_root: site1
 package: apache2
 desired_state: present   # values can be present/absent
 web_content: |
