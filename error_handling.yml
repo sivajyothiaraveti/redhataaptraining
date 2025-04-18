@@ -3,7 +3,7 @@
   hosts: sj_web
   gather_facts: true
   vars:
-    bad_package: "fakepackage124"
+    bad_package: "fakepackage1244"
     log_file: "/var/log/aap_error_handling.log"
     rescue_triggered: false  # default
 
@@ -12,6 +12,7 @@
       apt:
         name: python3
         state: present
+        update_cache: yes
 
     - name: Block of tasks with real error (bad package)
       block:
@@ -19,6 +20,8 @@
           apt:
             name: "{{ bad_package }}"
             state: present
+          register: install_result
+          failed_when: install_result.failed    
           notify: Log bad package install failure
         # Additional tasks can be placed here if needed
       rescue:
