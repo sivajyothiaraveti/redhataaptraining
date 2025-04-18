@@ -3,7 +3,7 @@
   hosts: sj_web
   gather_facts: true
   vars:
-    bad_package: "fakepackage12"
+    bad_package: "fakepackage124"
     log_file: "/var/log/aap_error_handling.log"
     rescue_triggered: false  # default
 
