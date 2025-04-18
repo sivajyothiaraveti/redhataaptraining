@@ -9,3 +9,11 @@ m2 ansible_host=172.31.18.18
 
 [sj_db:vars]
 ansible_user=dbadmin
+
+[webservers]
+web01 ansible_host=172.31.24.124
+web02 ansible_host=172.31.18.18
+
+[webservers:vars]
+ansible_user=ubuntu
+ansible_python_interpreter=/usr/bin/python3
